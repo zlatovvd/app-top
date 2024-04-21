@@ -3,12 +3,14 @@
 import styles from "./page.module.css";
 import { Button, Htag, P, Raiting, Tag } from "./components";
 import { useState } from "react";
+import { withLayout } from "./Layout/Layout";
 
-export default function Home(): JSX.Element {
+export function Home(): JSX.Element {
   const [counter, setCounter] = useState<number>(0);
+  const [raiting, setRaiting] = useState<number>(3);
 
   return (
-    <div>
+    <>
       <Htag tag={"h3"}>{counter}</Htag>
       <Button
         appearance="primary"
@@ -26,7 +28,9 @@ export default function Home(): JSX.Element {
       <Tag color="red">red</Tag>
       <Tag color="gray">gray</Tag>
       <Tag color="ghost">ghost</Tag>
-      <Raiting raiting={4}/>
-    </div>
+      <Raiting raiting={raiting} isEditable={true} setRaiting={setRaiting} />
+    </>
   );
 }
+
+export default withLayout(Home);
